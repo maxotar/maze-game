@@ -23,7 +23,7 @@
       .hidden {
         display: none !important;
       }
-      .winner {
+      .banner {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,7 +35,10 @@
     </style>
   </head>
   <body>
-    <div class="winner hidden">
+    <div id="instructions" class="banner">
+      <h1>Use 'wasd' keys or arrow keys to move!</h1>
+    </div>
+    <div id="winner" class="banner hidden">
       <h1>You Win!</h1>
     </div>
     <script src="utils.js"></script>

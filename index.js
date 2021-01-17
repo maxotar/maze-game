@@ -140,11 +140,29 @@ verticals.forEach((row, iRow) => {
 });
 
 const walls = [
-  Bodies.rectangle(width / 2, 0, width, wallThickness, { isStatic: true }),
-  Bodies.rectangle(width / 2, height, width, wallThickness, { isStatic: true }),
-  Bodies.rectangle(0, height / 2, wallThickness, height, { isStatic: true }),
+  Bodies.rectangle(width / 2, 0, width, wallThickness, {
+    isStatic: true,
+    render: {
+      fillStyle: "red",
+    },
+  }),
+  Bodies.rectangle(width / 2, height, width, wallThickness, {
+    isStatic: true,
+    render: {
+      fillStyle: "red",
+    },
+  }),
+  Bodies.rectangle(0, height / 2, wallThickness, height, {
+    isStatic: true,
+    render: {
+      fillStyle: "red",
+    },
+  }),
   Bodies.rectangle(width, height / 2, wallThickness, height, {
     isStatic: true,
+    render: {
+      fillStyle: "red",
+    },
   }),
 ];
 World.add(world, walls);
@@ -203,6 +221,12 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.querySelector("#instructions").classList.add("hidden");
+  }, 3000);
+});
+
 Events.on(engine, "collisionStart", (event) => {
   event.pairs.forEach((collision) => {
     const labels = ["ball", "goal"];
@@ -211,7 +235,7 @@ Events.on(engine, "collisionStart", (event) => {
       labels.includes(collision.bodyA.label) &&
       labels.includes(collision.bodyB.label)
     ) {
-      document.querySelector(".winner").classList.remove("hidden");
+      document.querySelector("#winner").classList.remove("hidden");
       world.gravity.y = 1;
       world.bodies.forEach((body) => {
         if (body.label === "wall") {
