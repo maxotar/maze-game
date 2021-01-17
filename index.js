@@ -6,8 +6,8 @@ const width = window.innerWidth;
 const height = window.innerHeight;
 const unitWidth = width / columns;
 const unitHeight = height / rows;
-const wallThickness = 10;
-const maxVelocity = 25;
+const wallThickness = 4;
+const maxVelocity = 20;
 
 const engine = Engine.create();
 engine.world.gravity.y = 0;
@@ -19,6 +19,7 @@ const render = Render.create({
     wireframes: false,
     width: width,
     height: height,
+    background: "black",
   },
 });
 Render.run(render);
@@ -224,7 +225,7 @@ document.addEventListener("keydown", (event) => {
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.querySelector("#instructions").classList.add("hidden");
-  }, 3000);
+  }, 5000);
 });
 
 Events.on(engine, "collisionStart", (event) => {
